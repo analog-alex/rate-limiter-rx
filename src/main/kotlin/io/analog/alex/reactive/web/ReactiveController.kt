@@ -24,11 +24,6 @@ class ReactiveController(
         return ResponseEntity.ok().body(Mono.just("Pong at ${Instant.now()}!"));
     }
 
-    @GetMapping(value = ["/call"], produces = [MediaType.APPLICATION_JSON_VALUE])
-    fun peekCalls(): ResponseEntity<*> {
-        return ResponseEntity.ok().body(Flux.just(rateLimitedTelephony.peekThrottledCalls()));
-    }
-
     @PostMapping(
         value = ["/call/inbound"],
         consumes = [MediaType.APPLICATION_JSON_VALUE],

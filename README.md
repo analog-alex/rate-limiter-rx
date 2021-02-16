@@ -4,7 +4,7 @@ Redisson based request limiter.
 
 ### How to run
 
-- `docker-compose up -d redis`
+- `docker-compose up -d redis mongo`
 - run with IntelliJ 
 
 ### Configurations
@@ -15,3 +15,8 @@ rate:
   period: 10 (period in seconds)
   wait: 2 (wait time for acquisition in seconds)
 ```
+
+### Why Mongo?
+
+Storing a call to a persistence data store is the stand-in for redirecting the call. That way we can tabulate what calls
+where actually sent.

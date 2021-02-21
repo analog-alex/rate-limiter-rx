@@ -28,6 +28,6 @@ class UtilitiesController(
             processedCallsRepository.findByAccountId(it)
         } ?: processedCallsRepository.findAll()
 
-        return ResponseEntity.ok().body(Flux.just(calls));
+        return ResponseEntity.ok().body(calls)
     }
 }

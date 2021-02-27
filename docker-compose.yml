@@ -5,10 +5,10 @@ services:
     build: .
     depends_on:
       - redis
-      - mongo
+      - fastify
     environment:
       SPRING_REDIS_HOST: redis
-      SPRING_DATA_MONGODB_HOST: mongo
+      BASE_SYSTEM_URL: "http://fastify:3000"
     command: java -jar rx.jar
     ports:
       - "8080:8080"
@@ -18,7 +18,19 @@ services:
     ports:
       - "6379:6379"
 
-  mongo:
-    image: mongo:4.2
+  fastify:
+    build: fastify-backend/.
+    depends_on:
+      - dynamodb
+    environment:
+      AWS_ACCESS_KEY_ID: "your-key-id"
+      AWS_SECRET_ACCESS_KEY: "your-secret-key"
+      AWS_DYNAMO_URL: "http://dynamodb:8000"
+      AWS_DYNAMO_REGION: "us-west-2"
     ports:
-      - "27017:27017"
+      - "3000:3000"
+
+  dynamodb:
+    image: amazon/dynamodb-local
+    hostname: dynamodb-local
+    container_name: dynamodb-local

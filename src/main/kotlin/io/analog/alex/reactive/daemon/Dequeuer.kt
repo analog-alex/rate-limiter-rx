@@ -17,14 +17,12 @@ class Dequeuer(
     private val logger = LoggerFactory.getLogger(Dequeuer::class.java)
 
     @Scheduled(fixedDelay = 500)
-    fun dequeu() {
-        logger.info("Scheduled task is processing")
-        val throttledCalls = queueManager.fetchThrottledCalls().takeIf { it.isNotEmpty() } ?: return
-
-        callDispatcher.processCall(
-            throttledCalls.poll().also { call ->
-                logger.info("Dequeue call $call")
-            }
-        )
+    fun dequeue() {
+        logger.debug("Scheduled task is processing")
+        queueManager.fetchThrottledCalls().takeIf { it.isNotEmpty() }?.let { queue ->
+            callDispatcher.processCall(
+                queue.poll().also { logger.info("Dequeued and processed call: '$it'") }
+            )
+        } ?: logger.debug("Nothing to dequeue")
     }
 }

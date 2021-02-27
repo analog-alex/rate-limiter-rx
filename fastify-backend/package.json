@@ -1,0 +1,32 @@
+{
+  "name": "fastify-in",
+  "version": "0.0.1",
+  "description": "A small server in Fastify",
+  "main": "src/index.js",
+  "scripts": {
+    "format": "prettier --write \"src/**/*.ts\"",
+    "build": "tsc",
+    "serve": "ts-node src/index.ts",
+    "start": "nodemon"
+  },
+  "keywords": [
+    "Fastify",
+    "node",
+    "javascript"
+  ],
+  "author": "Miguel Alexandre",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "2.848.0",
+    "fastify": "3.12.0"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "dotenv": "8.2.0",
+    "fastify-tsconfig": "1.0.1",
+    "nodemon": "2.0.7",
+    "prettier": "2.2.1",
+    "ts-node": "9.1.1",
+    "typescript": "4.1.5"
+  }
+}

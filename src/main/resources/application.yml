@@ -7,3 +7,7 @@ rate:
   limit: 5
   period: 10
   wait: 2
+
+base:
+  system:
+    url: "http://localhost:3000"

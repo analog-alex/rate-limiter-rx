@@ -21,7 +21,7 @@ class RateLimitedTelephony(
 
     fun routeInboundCall(call: InboundCall): TwiMLResponse {
         val goAhead = rateLimiter.tryAcquire()
-        logger.info("Lock acquisition returned $goAhead for call $call")
+        logger.debug("Lock acquisition returned $goAhead for call $call")
 
         return when (goAhead) {
             true -> {
